@@ -36,7 +36,7 @@ public:
         if (!std::filesystem::exists(path))
             throw std::invalid_argument("Cannot find file " + path.string());
 
-        src_ = cv::imread(path, cv::IMREAD_GRAYSCALE);
+        src_ = cv::imread(path.string(), cv::IMREAD_GRAYSCALE);
         cv::imshow("original", src_);
 
         openvx_out_.create(src_.rows, src_.cols, CV_8UC1);

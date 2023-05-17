@@ -10,7 +10,7 @@
 #include <vector>
 #include <string>
 
-//! Demo interface class.
+ //! Demo interface class.
 class idemo
 {
 public:

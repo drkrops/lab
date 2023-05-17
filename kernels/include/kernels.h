@@ -8,6 +8,7 @@
 #define __KERNELS_H__
 
 #include "openvx/vx.h"
+#include "../src/pApproximation.h"
 
 #ifdef __cplusplus
 extern "C" {
@@ -33,6 +34,17 @@ vx_status ref_threshold(const vx_image src_image, vx_image dst_image, const vx_t
 
 #ifdef __cplusplus
 }
+
+/*! @brief функция Approximate with polyline, используя алгоритм Рамера-Дугласа-Пекера
+ * polyApproximation:
+ *  @param[in] datas вектор точек кривой
+ *  @param[out] appr_pnts вектор точек ломаной, аппроксимирующей кривую.
+ *   @param[in] accuracy точность аппроксимации
+ *  @reval VX_SUCCESS в случае успешного завершения
+ *  @retval VX_ERROR_INVALID_PARAMETERS в случае некорректных данных
+*/
+vx_status poly_approximate(const std::vector<point> datas, std::vector<point>& appr_pnts, const float accuracy);
+
 #endif
 
 #endif // __KERNELS_H__
