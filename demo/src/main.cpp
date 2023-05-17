@@ -1,20 +1,18 @@
 /*! @file
  *  @brief Entry point of the Demo Application
- *  @author Roman Golovanov
- *  @date 23 March 2016
+ *  @author Ivashkov Stas
+ *  @date 17 May 2023
  */
 
 #include <iostream>
 #include <filesystem>
-
 #include <opencv2/highgui.hpp>
-
 #include "idemo.hpp"
 
 int main(int argc, char** argv)
 {
-    // Default directory with images relative to executable.
-    std::filesystem::path resource_dir = "../image";
+    std::filesystem::path resource_dir = "../../../../image"; // т.к. мой проект собирается из ..\lab\out\build\x64-Debug\demo
+
     if (argc > 1)
         resource_dir = argv[1];
 
@@ -23,7 +21,7 @@ int main(int argc, char** argv)
     std::cout << "Demo Application contains " << reg.size() << " demos:\n";
     unsigned int idx = 0;
     for (auto item : reg)
-        std::cout << idx++ << ") " << item->to_string() << "\n";
+        std::cout << idx++ << ") " << item->to_string() << std::endl;
 
     std::cout << "Please enter index of the demo to run: ";
     std::cin >> idx;
