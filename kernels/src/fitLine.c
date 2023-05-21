@@ -1,4 +1,5 @@
 #include "detail/types.h"
+#include "detail/lineParams3d.h"
 
 vx_status fitLine2D(const vx_array x, const vx_array y, float* k, float* b) {
 	if (x->size != y->size || x->size == 0)
@@ -22,4 +23,14 @@ vx_status fitLine2D(const vx_array x, const vx_array y, float* k, float* b) {
 	*b = (Sy - *k * Sx) / N;
 
 	return VX_SUCCESS;
+}
+
+
+vx_status fitLine3D(const vx_array x, const vx_array y, const vx_array z, lineParams3d params) {
+	if (x->size != y->size || x->size != z->size || x->size == 0)
+		return VX_ERROR_INVALID_PARAMETERS;
+	params->z0 = 0; params->c = 1;
+	if (fitLine2D(z, x, &params->a, &params->x0) == VX_SUCCESS && fitLine2D(z, y, &params->b, &params->y0) == VX_SUCCESS)
+		return VX_SUCCESS;
+	return VX_ERROR_INVALID_VALUE;
 }
