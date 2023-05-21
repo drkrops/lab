@@ -33,9 +33,9 @@ vx_status ref_threshold(const vx_image src_image, vx_image dst_image, const vx_t
 
 /*! @brief Функция аппроксимации прямой линии по набору точек
 *   @param[in] x, y - векторы координат точек
-*	@param[out] k, b - параметры уравнения прямой y = kx + b
+*	@param[out] k, b - указатели на параметры уравнения прямой y = kx + b
 */
-vx_status fitLine2D(const _vx_array x, const _vx_array y, float& k, float& b);
+vx_status fitLine2D(const vx_array x, const vx_array y, float* k, float* b);
 
 #ifdef __cplusplus
 }
