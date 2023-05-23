@@ -8,6 +8,7 @@
 #define __KERNELS_H__
 
 #include "openvx/vx.h"
+#include "detail/lineParams3d.h"
 
 #ifdef __cplusplus
 extern "C" {
@@ -30,6 +31,19 @@ extern "C" {
  *  @retval VX_ERROR_INVALID_PARAMETERS в случае некорректных данных
  */
 vx_status ref_threshold(const vx_image src_image, vx_image dst_image, const vx_threshold thresh);
+
+/*! @brief Функция аппроксимации прямой линии по набору точек на плоскости
+*   @param[in] x, y - векторы координат точек
+*	@param[out] k, b - указатели на параметры уравнения прямой y = kx + b
+*/
+vx_status fitLine2D(const vx_array x, const vx_array y, float* k, float* b);
+
+
+/*! @brief Функция аппроксимации прямой линии по набору точек в пространстве
+*   @param[in] x, y, z - векторы координат точек
+*	@param[out] k, b - указатели на параметры уравнения прямой y = kx + b
+*/
+vx_status fitLine3D(const vx_array x, const vx_array y, const vx_array z, lineParams3d params);
 
 #ifdef __cplusplus
 }
